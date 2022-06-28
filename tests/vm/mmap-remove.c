@@ -14,7 +14,6 @@ test_main (void)
   int handle;
   void *map;
   size_t i;
-
   /* Map file. */
   CHECK ((handle = open ("sample.txt")) > 1, "open \"sample.txt\"");
   CHECK ((map = mmap (actual, 4096, 0, handle, 0)) != MAP_FAILED, "mmap \"sample.txt\"");

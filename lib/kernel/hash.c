@@ -20,7 +20,10 @@ static void remove_elem (struct hash *, struct hash_elem *);
 static void rehash (struct hash *);
 
 /* Initializes hash table H to compute hash values using HASH and
-   compare hash elements using LESS, given auxiliary data AUX. */
+   compare hash elements using LESS, given auxiliary data AUX.
+	 해시 테이블 H를 초기화하여 해시 값을 계산하고 보조 데이터 AUX가 주어지면
+	 LESS를 사용하여 해시 요소를 비교합니다.	 
+*/
 bool
 hash_init (struct hash *h,
 		hash_hash_func *hash, hash_less_func *less, void *aux) {

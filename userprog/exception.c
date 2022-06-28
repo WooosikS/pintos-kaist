@@ -116,6 +116,8 @@ kill (struct intr_frame *f) {
    can find more information about both of these in the
    description of "Interrupt 14--Page Fault Exception (#PF)" in
    [IA32-v3a] section 5.15 "Exception and Interrupt Reference". */
+
+// 한양대 피피티 보기
 static void
 page_fault (struct intr_frame *f) {
 	bool not_present;  /* True: not-present page, false: writing r/o page. */
@@ -139,9 +141,13 @@ page_fault (struct intr_frame *f) {
 	not_present = (f->error_code & PF_P) == 0;
 	write = (f->error_code & PF_W) != 0;
 	user = (f->error_code & PF_U) != 0;
-
+	// Stack pointer(%esp)가 가리키는 주소에서 Page fault가 발생할 경우,
+	// exit(-1) 시스템 콜을 호출 하도록 수정
+	// Page fault의 관한 자세한 내용은 project 3에서 다룬다.
+	
 #ifdef VM
 	/* For project 3 and later. */
+	// 페이지 폴트나면 드감
 	if (vm_try_handle_fault (f, fault_addr, user, write, not_present))
 		return;
 #endif
@@ -150,11 +156,12 @@ page_fault (struct intr_frame *f) {
 	page_fault_cnt++;
 
 	/* If the fault is true fault, show info and exit. */
-	printf ("Page fault at %p: %s error %s page in %s context.\n",
-			fault_addr,
-			not_present ? "not present" : "rights violation",
-			write ? "writing" : "reading",
-			user ? "user" : "kernel");
-	kill (f);
+	// printf ("Page fault at %p: %s error %s page in %s context.\n",
+	// 		fault_addr,
+	// 		not_present ? "not present" : "rights violation",
+	// 		write ? "writing" : "reading",
+	// 		user ? "user" : "kernel");
+	// kill (f);
+	exit(-1);
 }
 

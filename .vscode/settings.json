@@ -1,0 +1,20 @@
+{
+    "files.associations": {
+        "cstdlib": "c",
+        "intrinsic.h": "c",
+        "*.inc": "c",
+        "atomic": "c",
+        "cstddef": "c",
+        "vector": "c",
+        "memory": "c",
+        "type_traits": "c",
+        "limits": "c",
+        "new": "c",
+        "utility": "c",
+        "interrupt.h": "c",
+        "array": "c",
+        "istream": "c",
+        "ostream": "c",
+        "tuple": "c"
+    }
+}
